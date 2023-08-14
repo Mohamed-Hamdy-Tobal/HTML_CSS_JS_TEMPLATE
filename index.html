@@ -4,10 +4,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Special Design</title>
-        <!-- Main CSS File -->
-        <link rel="stylesheet" href="css/master.css">
         <!-- Normalize CSS File -->
         <link rel="stylesheet" href="css/normalize.css">
+        <!-- Main CSS File -->
+        <link rel="stylesheet" href="css/master.css">
         <!-- FontAwesome -->
         <link rel="stylesheet" href="css/all.min.css">
         <!-- Fonts -->
@@ -19,7 +19,21 @@
 
         <!-- Start Setting Box -->
         <div class="settings-box">
-            <i class="fa-solid fa-gear"></i>
+            <div class="toggle-setting">
+                <i class="fa-solid fa-gear"></i>
+            </div>
+            <div class="setting-container">
+                <div class="option-box">
+                    <h4>Colors</h4>
+                    <ul class="colors-list">
+                        <li class="active" data-color="#FF9800"></li>
+                        <li data-color="#FFEB3B"></li>
+                        <li data-color="#E91E63"></li>
+                        <li data-color="#2196f3"></li>
+                        <li data-color="#4CAF50"></li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <!-- End Setting Box -->
         
@@ -42,7 +56,7 @@
 
             </div>
         </div>
-        <!-- End Landing Page -->
+        <!-- End Landing Page --> 
 
         <script src="js/main.js"></script>
     </body>

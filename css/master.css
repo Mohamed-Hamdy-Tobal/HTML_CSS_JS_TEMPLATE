@@ -20,6 +20,11 @@ li {
 a {
     text-decoration: none;
 }
+.container{
+    width: 1170px;
+    padding: 0 15px;
+    margin: auto;
+}
 /* End Common Style */
 
 /* ------------------------------------------------------ */
@@ -54,20 +59,24 @@ a {
     padding: 8px;
 }
 .settings-box .option-box {
-    padding: 20px;
+    padding: 12px;
+    background: #eee;
+    margin: 10px;
+    text-align: center;
 }
 .settings-box .option-box h4{
     color: #666;
+    font-size: 14px;
 }
 .settings-box .option-box .colors-list {
     display: flex;
     justify-content: center;
     gap: 4px;
-    margin: 12px auto;
+    margin: 12px auto 5px;
 }
 .settings-box .option-box .colors-list li{
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -76,6 +85,7 @@ a {
     cursor: pointer;
     background-color: #333;
     opacity: .5;
+    border: 3px solid #eee;
 }
 .settings-box .option-box .colors-list li:first-child{
     background-color: #FF9800;
@@ -94,6 +104,45 @@ a {
 }
 .settings-box .option-box .colors-list li.active{
     opacity: 1;
+    border: 3px solid #fff;
+}
+.settings-box .option-box .yes,
+.settings-box .option-box .no {
+    display: inline-block;
+    width: 50px;
+    background-color: #333;
+    font-size: 12px;
+    color: #fff;
+    margin-top: 10px;
+    padding: 4px 10px;
+    font-weight: bold;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    cursor: pointer;
+    opacity: .5;
+    transition: var(--main-trans);
+    -webkit-transition: var(--main-trans);
+    -moz-transition: var(--main-trans);
+    -ms-transition: var(--main-trans);
+    -o-transition: var(--main-trans);
+}
+.settings-box .option-box .random-background .yes {
+    background-color: teal;
+}
+.settings-box .option-box .random-background .yes:hover {
+    opacity: 1;
+}
+.settings-box .option-box .random-background .no {
+    background-color: tomato;
+}
+.settings-box .option-box .random-background .no:hover {
+    opacity: 1;
+}
+.settings-box .option-box .random-background span.active {
+    opacity: 1;
 }
 /* End Setting Box */
 
@@ -110,36 +159,6 @@ a {
     -moz-transition: .1s;
     -ms-transition: .1s;
     -o-transition: .1s;
-}
-.landing-page::after {
-    content: "";
-    position: fixed;
-    bottom: 0;
-    right: 0%;
-    border-color: transparent #fff #fff transparent;
-    border-width: 130px;
-    border-style: solid;
-    z-index: 10;
-    transform: scaleX(7) skew(-9deg, -2deg);
-    -webkit-transform: scaleX(7) skew(-9deg, -2deg);
-    -moz-transform: scaleX(7) skew(-9deg, -2deg);
-    -ms-transform: scaleX(7) skew(-9deg, -2deg);
-    -o-transform: scaleX(7) skew(-9deg, -2deg);
-}
-.landing-page::before {
-    content: "";
-    position: fixed;
-    bottom: 0;
-    left: 0%;
-    border-color: transparent transparent #fff #fff;
-    border-width: 130px;
-    border-style: solid;
-    z-index: 10;
-    transform: scaleX(3.3) skew(3deg, 0deg);
-    -webkit-transform: scaleX(3.3) skew(3deg, 0deg);
-    -moz-transform: scaleX(3.3) skew(3deg, 0deg);
-    -ms-transform: scaleX(3.3) skew(3deg, 0deg);
-    -o-transform: scaleX(3.3) skew(3deg, 0deg);
 }
 
 .landing-page .overlay {
@@ -195,6 +214,7 @@ header .links a.active  {
     z-index: 2;
     color: #fff;
     text-align: center;
+    width: 80%;
 }
 .landing-page .introduction-text h1{
     font-size: 35px;
@@ -208,3 +228,32 @@ header .links a.active  {
 }
 
 /* ### End Landing Page ### */
+
+
+/* ### Start AboutUs ### */
+.about-us {
+    padding: 50px 50px;
+    display: flex;
+}
+.about-us .info-box {
+    flex: 1;
+    padding: 30px;
+}
+.about-us .info-box h2{
+    font-weight: bold;
+    font-size: 30px;
+    color: var(--main-color);
+    margin: 0 0 10px;
+}
+.about-us .info-box p{
+    line-height: 1.8;
+    color: #767676;
+}
+.about-us .image {
+    flex: 1;
+    text-align: center;
+}
+.about-us .image img{
+    width: 300px;
+}
+/* ### Start AboutUs ### */

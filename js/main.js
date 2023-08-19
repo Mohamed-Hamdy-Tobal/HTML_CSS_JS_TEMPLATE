@@ -155,3 +155,206 @@ function randomBackground() {
     }
 }
 randomBackground()
+
+
+
+// -------------------------------------------------------------------------
+
+
+// For Skill Scrolling
+
+let ourSkills = document.querySelector(".skills")
+
+window.onscroll = function() {
+
+    let skillsOffsetTop = ourSkills.offsetTop;  // The Distance On The Top Of Element
+
+    let skillOuterHeight = ourSkills.offsetHeight // The Height Of THe Element Including It's padding
+
+    let windowHeight = this.innerHeight;  //  It represents the height of the visible area within the browser window, 
+
+    let windowScrollTop = this.pageYOffset  // The Scrolling The Page
+
+    if (windowScrollTop > (skillsOffsetTop + skillOuterHeight - windowHeight)) {
+        let allSkills = document.querySelectorAll(".skill-box .skill-progress span") 
+        allSkills.forEach(skill => {
+            skill.style.width = skill.dataset.progress
+        })
+    }
+}
+
+// -------------------------------------------------------------------------
+
+// For Gallery
+let ourGallery = document.querySelectorAll(".gallery img")
+ourGallery.forEach(img => {
+    img.addEventListener("click", function(e) {
+        // For Overlay
+        let overlay = document.createElement("div")
+        overlay.className = "popup-overlay"
+        document.body.appendChild(overlay)
+
+        // For Popup Box
+        let popupBox = document.createElement("div")
+        popupBox.className = "popup-box"
+
+        // For Heading From Alt
+        let imageHeader = document.createElement("h3")
+        let imgText = document.createTextNode(img.alt)
+
+        // For Append
+        imageHeader.appendChild(imgText)
+        popupBox.appendChild(imageHeader)
+
+        // For Popup Image
+        let popupImage = document.createElement("img")
+        popupImage.src = img.src
+
+        // Append Image To Box, Append Box To Body
+        popupBox.appendChild(popupImage)
+        document.body.appendChild(popupBox)
+
+        // To Create The Close Span
+        let closeSpan = document.createElement("span")
+        let closeText = document.createTextNode("X")
+        closeSpan.appendChild(closeText)
+        closeSpan.className = "close-button"
+        popupBox.appendChild(closeSpan)
+
+    })
+})
+
+// For Close The Popup
+document.addEventListener("click", function(e) {
+    if (e.target.className == "close-button") {
+        e.target.parentElement.remove()
+        document.querySelector(".popup-overlay").remove()
+    }
+})
+
+
+// -------------------------------------------------------------------------------------------------------------
+
+// ## For Navigation Bullets And Header Select ##
+
+let allBullets = document.querySelectorAll(".nav-bullets .bullet")
+let allLinks = document.querySelectorAll("header .links a")
+
+function scrollToSomeWhere(elements) {
+    elements.forEach(ele => {
+        ele.addEventListener("click", (e) => {
+            document.querySelector(`${e.target.dataset.section}`).scrollIntoView({
+                behavior: "smooth"
+            })
+        })
+    })
+    
+}
+scrollToSomeWhere(allBullets)
+scrollToSomeWhere(allLinks)
+
+
+allBullets.forEach(ele => {
+    ele.addEventListener("click", (e) => {
+        allBullets.forEach((ele) => {
+            ele.classList.remove("active-bullet")
+        })
+        ele.classList.add("active-bullet")
+    })
+})
+
+
+// Handle Active State
+function handleActive(ev) {
+    // Loop On Element that has class active
+    ev.target.parentElement.querySelector(".active").forEach(ele => {
+        ele.classList.remove("active")
+
+        // Check if the color on any element loop is equal to the main color in local storage
+        if (ele.dataset.color == mainColor) {
+            ele.classList.add("active")
+        }
+    })
+}
+
+
+// For Show Or Hide Bullets
+let bulletsSpan = document.querySelectorAll(".bullets-option span")
+
+let bulletsContainer = document.querySelector(".nav-bullets")
+
+let bulletLocalItem = localStorage.getItem("bullets-option")
+
+if (bulletLocalItem) {
+    bulletsSpan.forEach((span) => {
+        span.classList.remove("active")
+    })
+    if (bulletLocalItem == "show") {
+        bulletsContainer.style.display = "block"
+        document.querySelector(".bullets-option .yes").classList.add("active")
+    } else {
+        bulletsContainer.style.display = "none"
+        document.querySelector(".bullets-option .no").classList.add("active")
+    }
+}
+
+bulletsSpan.forEach((span) => {
+    span.addEventListener("click", (e) => {
+        if (span.dataset.display == "yes") {
+            bulletsContainer.style.display = "block"
+            localStorage.setItem("bullets-option", "show")
+            document.querySelector(".bullets-option .yes").classList.add("active")
+            document.querySelector(".bullets-option .no").classList.remove("active")
+        } else {
+            bulletsContainer.style.display = "none"
+            localStorage.setItem("bullets-option", "hide")
+            document.querySelector(".bullets-option .no").classList.add("active")
+            document.querySelector(".bullets-option .yes").classList.remove("active")
+        }
+    })
+})
+
+// ## Reset Local Storage ##
+let myRest = document.querySelector(".settings-box .reset-options")
+myRest.addEventListener("click", () => {
+    localStorage.removeItem("mainColor")
+    localStorage.removeItem("bullets-option")
+    localStorage.removeItem("background_option")
+    window.location.reload()
+})
+
+let myAllElements = Array.from(document.body.children).slice(3, document.body.children.length - 1)
+
+// Function to remove "active" class from all bullets
+function removeActiveClassFromBullets() {
+    allBullets.forEach(bullet => {
+        bullet.classList.remove('active-bullet');
+    });
+}
+
+
+window.onscroll = function() {
+
+    let reachedLandingPage = window.scrollY < myAllElements[0].offsetTop;
+    if (reachedLandingPage) {
+        removeActiveClassFromBullets();
+        return; // Stop further processing if at landing page
+    }
+
+    myAllElements.forEach((section, index) => {
+        let sectionOffsetTop = section.offsetTop;
+        let sectionOuterHeight = section.offsetHeight;
+        let windowHeight = this.innerHeight;
+        let windowScrollTop = this.pageYOffset;
+
+        if (windowScrollTop > (sectionOffsetTop + sectionOuterHeight - windowHeight)) {
+            // Remove 'active-bullet' class from all bullets
+            allBullets.forEach(bullet => {
+            bullet.classList.remove('active-bullet');
+            });
+
+            // Add 'active-bullet' class to the corresponding bullet
+            allBullets[index].classList.add('active-bullet');
+        }
+    });
+};

@@ -264,18 +264,18 @@ allBullets.forEach(ele => {
 })
 
 
-// Handle Active State
-function handleActive(ev) {
-    // Loop On Element that has class active
-    ev.target.parentElement.querySelector(".active").forEach(ele => {
-        ele.classList.remove("active")
+// // Handle Active State
+// function handleActive(ev) {
+//     // Loop On Element that has class active
+//     ev.target.parentElement.querySelector(".active").forEach(ele => {
+//         ele.classList.remove("active")
 
-        // Check if the color on any element loop is equal to the main color in local storage
-        if (ele.dataset.color == mainColor) {
-            ele.classList.add("active")
-        }
-    })
-}
+//         // Check if the color on any element loop is equal to the main color in local storage
+//         if (ele.dataset.color == mainColor) {
+//             ele.classList.add("active")
+//         }
+//     })
+// }
 
 
 // For Show Or Hide Bullets
@@ -332,9 +332,7 @@ function removeActiveClassFromBullets() {
     });
 }
 
-
-window.onscroll = function() {
-
+window.addEventListener("scroll", function() {
     let reachedLandingPage = window.scrollY < myAllElements[0].offsetTop;
     if (reachedLandingPage) {
         removeActiveClassFromBullets();
@@ -347,7 +345,7 @@ window.onscroll = function() {
         let windowHeight = this.innerHeight;
         let windowScrollTop = this.pageYOffset;
 
-        if (windowScrollTop > (sectionOffsetTop + sectionOuterHeight - windowHeight)) {
+        if (windowScrollTop + 200 > (sectionOffsetTop + sectionOuterHeight - windowHeight)) {
             // Remove 'active-bullet' class from all bullets
             allBullets.forEach(bullet => {
             bullet.classList.remove('active-bullet');
@@ -357,4 +355,4 @@ window.onscroll = function() {
             allBullets[index].classList.add('active-bullet');
         }
     });
-};
+})

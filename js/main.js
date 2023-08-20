@@ -263,21 +263,6 @@ allBullets.forEach(ele => {
     })
 })
 
-
-// // Handle Active State
-// function handleActive(ev) {
-//     // Loop On Element that has class active
-//     ev.target.parentElement.querySelector(".active").forEach(ele => {
-//         ele.classList.remove("active")
-
-//         // Check if the color on any element loop is equal to the main color in local storage
-//         if (ele.dataset.color == mainColor) {
-//             ele.classList.add("active")
-//         }
-//     })
-// }
-
-
 // For Show Or Hide Bullets
 let bulletsSpan = document.querySelectorAll(".bullets-option span")
 
@@ -345,7 +330,7 @@ window.addEventListener("scroll", function() {
         let windowHeight = this.innerHeight;
         let windowScrollTop = this.pageYOffset;
 
-        if (windowScrollTop + 200 > (sectionOffsetTop + sectionOuterHeight - windowHeight)) {
+        if (windowScrollTop  > (sectionOffsetTop + sectionOuterHeight - windowHeight)) {
             // Remove 'active-bullet' class from all bullets
             allBullets.forEach(bullet => {
             bullet.classList.remove('active-bullet');
@@ -355,4 +340,39 @@ window.addEventListener("scroll", function() {
             allBullets[index].classList.add('active-bullet');
         }
     });
+})
+
+
+// For Display Toggle Menue
+let toggleBtn = document.querySelector(".toggle-menue")
+let theLinks = document.querySelector("header .links")
+let theGear = document.querySelector(".settings-box .toggle-setting")
+
+
+toggleBtn.onclick = function(e) {
+    
+    // Stop Propagation => Mean That Enter The The Entire Elements like span, treated it as one element
+    e.stopPropagation()
+
+    this.classList.toggle("menu-active")
+    theLinks.classList.toggle("open")
+    theGear.classList.toggle("move")
+}
+theLinks.onclick = function(e) {
+    
+    // Stop Propagation => Mean That Enter The The Entire Elements like span, treated it as one element
+    // Also For links iteself
+    e.stopPropagation()
+}
+// To Close It Anywhere From the body
+document.addEventListener("click", (e) => {
+    if (e.target != toggleBtn) {
+        
+        // Check if the menu is opened
+        if (theLinks.classList.contains("open")) {
+            toggleBtn.classList.toggle("menu-active")
+            theLinks.classList.toggle("open")
+            theGear.classList.toggle("move")
+        }
+    }
 })

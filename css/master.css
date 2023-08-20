@@ -27,7 +27,6 @@ textarea:focus {
     outline: none;
 }
 .container{
-    width: 1170px;
     padding: 0 15px;
     margin: auto;
     position: relative;
@@ -65,6 +64,11 @@ textarea:focus {
     border-style: solid;
     border-color: var(--main-color) var(--main-color) var(--main-color) transparent;
     border-width: 3px;
+    transition: var(--main-trans);
+    -webkit-transition: var(--main-trans);
+    -moz-transition: var(--main-trans);
+    -ms-transition: var(--main-trans);
+    -o-transition: var(--main-trans);
 }
 .settings-box .toggle-setting i{
     width: 32px;
@@ -289,6 +293,9 @@ textarea:focus {
     background-color: rgba(0, 0, 0, 0.65);
     z-index: 1;
 }
+.landing-page .container {
+    position: initial;
+}
 header {
     position: relative;
     z-index: 2;
@@ -312,6 +319,11 @@ header .links {
     gap: 20px;
     justify-content: end;
     font-size: 15px;
+    transition: var(--main-trans);
+    -webkit-transition: var(--main-trans);
+    -moz-transition: var(--main-trans);
+    -ms-transition: var(--main-trans);
+    -o-transition: var(--main-trans);
 }
 header .links a{
     color: #fff;
@@ -344,6 +356,32 @@ header .links a.active  {
 .landing-page .introduction-text p{
     line-height: 1.6;
     font-size: 20px;
+}
+
+header .links-container .toggle-menue {
+    background: none;
+    border: none;
+    width: 40px;
+    cursor: pointer;
+    display: none;
+}
+header .links-container .toggle-menue:focus {
+    outline: none;
+}
+header .toggle-menue.menu-active::before {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent transparent #fff transparent;
+    bottom: 9px;
+    right: 50px;
+}
+header .links-container .toggle-menue span{
+    display: block;
+    background-color: #fff;
+    height: 4px;
+    margin-bottom: 4px;
 }
 
 /* ### End Landing Page ### */
@@ -699,10 +737,11 @@ header .links a.active  {
     display: flex;
     justify-content: space-between;
     gap: 10px;
+    flex-wrap: wrap;
 }
 .testi .ts-box{
     position: relative;
-    flex-basis: 33%;
+    flex-basis: 32%;
     background: #fff;
     padding: 20px;
     font-size: 20px;
@@ -813,3 +852,195 @@ header .links a.active  {
     cursor: pointer;
 }
 /* End Contact */
+
+/* Start Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+}
+footer span{
+    color: var(--main-color);
+}
+/* End Footer */
+
+
+/* ---------------------------------------- */
+
+/* Start Grid System */
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* For Elements */
+
+@media (min-width: 992px) {
+    .testi .ts-box {
+        position: relative;
+        flex-basis: 32%;
+        background: #fff;
+        padding: 20px;
+        font-size: 20px;
+        text-align: center;
+    }
+    .testi .ts-box > p{
+    font-size: 18px;
+    }
+    .testi .ts-box > .person-info {
+    flex-direction: column;
+    }
+    .testi .ts-box > .person-info p {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 991px) {
+    header {
+        padding: 25px 40px;
+    }
+    header .links {
+        transform: scaleY(0);
+        transform-origin: top left;
+        padding: 18px;
+        background: #fff;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        border-radius: 4px;
+        flex-direction: column;
+        gap: 15px;
+        justify-content: center;
+        transition: .5s;
+        -webkit-transition: .5s;
+        -moz-transition: .5s;
+        -ms-transition: .5s;
+        -o-transition: .5s;
+        z-index: 1010;
+    }
+    header .links-container .toggle-menue {
+        display: block;
+    }
+    header .logo {
+        flex-basis: 50%;
+        font-size: 20px;
+        font-family: 'Open Sans', sans-serif;
+        margin-top: 0;
+    }
+    header .links.open {
+        transform: scaleY(1);
+}
+    header .links.open li a{
+    color: var(--main-color);
+    font-weight: bold;
+    }
+    .testi h2 {
+        margin: 0 0 40px;
+        text-align: center;
+    }
+    .testi .ts-box {
+        flex-basis: 100%;
+    }
+    .testi .ts-box > .person-info .info {
+    flex: initial;
+    }
+    .testi .ts-box > .person-info {
+        justify-content: center;
+        gap: 18px;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .about-us .container {
+    flex-direction: column;
+    text-align: center;
+    }
+    .about-us .info-box {
+    flex: 1;
+    padding: 0;
+    }
+    .timeline .timeline-content .left, .timeline .timeline-content .right {
+    width: 100%;
+    margin-bottom: 70px;
+}
+    .timeline .timeline-content .right {
+        align-self: initial;
+    }
+    .timeline .timeline-content .left::before,
+    .timeline .timeline-content .right::before {
+    left: 50%;
+    top: -40px;
+    transform: translateX(-50%);
+    }
+    .timeline .year {
+        margin: 0px auto 100px;
+    }
+    .timeline .timeline-content .left .content::before,
+    .timeline .timeline-content .right .content::before {
+    left: 50%;
+    border-color: transparent transparent  #fff transparent;
+    transform: translateX(-50%);
+    top: -39px;
+    }
+    .timeline .timeline-content .right.mt-10,
+    .timeline .timeline-content .left.mt-10{
+        margin-bottom: 10px;
+    }
+    .feat .parent-box .feat-box {
+    flex-basis: 45%;
+    }
+    .contact form {
+        flex-direction: column;
+        gap: 0;
+    }
+    .contact form .left, .contact form .right {
+        width: 100%;
+    }
+}
+@media (max-width: 630px) {
+    .settings-box .toggle-setting.move{
+    transform: translateY(300px);
+    }
+    .landing-page .introduction-text {
+        width: 95%;
+    }
+}
+@media (max-width: 575px) {
+    .landing-page .introduction-text h1 {
+        font-size: 26px;
+    }
+    .skills .skill-box {
+    padding: 10px 5px;
+    }
+    .skills .skill-box .skill-name {
+        width: 80px;
+        font-size: 12px;
+    }
+    .feat .parent-box .feat-box {
+        flex-basis: 100%;
+    }
+    .testi .ts-box > .person-info {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+/* End Grid System */

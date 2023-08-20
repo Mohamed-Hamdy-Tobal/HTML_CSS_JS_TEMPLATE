@@ -342,7 +342,7 @@ header .links a.active  {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 2;
+    z-index: 1;
     color: #fff;
     text-align: center;
     width: 80%;
@@ -1015,6 +1015,9 @@ footer span{
     .contact form .left, .contact form .right {
         width: 100%;
     }
+    .popup-box {
+        width: 90%;
+    }
 }
 @media (max-width: 630px) {
     .settings-box .toggle-setting.move{
@@ -1041,6 +1044,10 @@ footer span{
     .testi .ts-box > .person-info {
         flex-direction: column;
         text-align: center;
+    }
+    .testi {
+        position: relative;
+        padding: 80px 0;
     }
 }
 /* End Grid System */

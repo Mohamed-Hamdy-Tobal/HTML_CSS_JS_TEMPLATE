@@ -327,17 +327,22 @@ window.addEventListener("scroll", function() {
     myAllElements.forEach((section, index) => {
         let sectionOffsetTop = section.offsetTop;
         let sectionOuterHeight = section.offsetHeight;
+        let sectionMiddle = sectionOffsetTop + sectionOuterHeight / 2;
         let windowHeight = this.innerHeight;
         let windowScrollTop = this.pageYOffset;
 
-        if (windowScrollTop  > (sectionOffsetTop + sectionOuterHeight - windowHeight)) {
-            // Remove 'active-bullet' class from all bullets
-            allBullets.forEach(bullet => {
-            bullet.classList.remove('active-bullet');
-            });
+        // Check if the user is in the middle of the current section
+        if (windowScrollTop >= sectionOffsetTop && windowScrollTop < sectionOffsetTop + sectionOuterHeight) {
+            removeActiveClassFromBullets();
 
-            // Add 'active-bullet' class to the corresponding bullet
+            // Highlight the bullet corresponding to the current section
             allBullets[index].classList.add('active-bullet');
+        } else if (windowScrollTop >= sectionMiddle) {
+            // Highlight the bullet corresponding to the next section
+            removeActiveClassFromBullets();
+            if (index + 1 < allBullets.length) {
+                allBullets[index + 1].classList.add('active-bullet');
+            }
         }
     });
 })
